@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DynamicInfo</title>
+    <style> 
+        .div-color{
+            background-color: rgb(168, 108, 29);
+            color: aliceblue;
+            text-align: center;
+            margin: 2% 3%;
+            padding: 2%;
+            box-shadow: 2px 4px 0px 0px rgba(36,35,25,0.38);
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="data-container"></div>
+
+<!-- javascript -->
+<script> 
+    const url = `https://jsonplaceholder.typicode.com/posts`;
+    fetch(url)
+    .then(res=>res.json())
+    .then(data=>getData(data))
+    .catch(ree=>console.log(err));
+
+    const getData = (info)=>{
+        console.log(info);
+        let list = "";
+        info.forEach(element => {
+           
+            list = list+`<div class="div-color"><p>${element.id}</p>
+            <h2>${element.title}</h2>
+                <p>${element.body}</p></div>
+            `;
+            console.log(list);
+            const dataContainer =  document.getElementById("data-container");
+            dataContainer.innerHTML = list;
+        });
+        
+        // const dataContainer =  document.getElementById("data-container");
+        // dataContainer.innerHTML = list;
+        return list;
+    }
+
+</script>
+
+</body>
+</html>
